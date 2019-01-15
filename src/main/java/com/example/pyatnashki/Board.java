@@ -16,7 +16,7 @@ public class Board {
         for (int i = 0; i < blocks.length; i++) {  //  в этом цикле определяем координаты нуля и вычисляем h(x)
             for (int j = 0; j < blocks[i].length; j++) {
                 if (blocks[i][j] != (i * dimension() + j + 1) && blocks[i][j] != 0) {  // если 0 не на своем месте - не считается
-                    h += 1;
+                    h++;
                 }
                 if (blocks[i][j] == 0) {
                     zeroX = i;
@@ -39,31 +39,6 @@ public class Board {
         return h == 0;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Board board = (Board) o;
-
-        if (board.dimension() != dimension()) {
-            return false;
-        }
-        for (int i = 0; i < blocks.length; i++) {
-            for (int j = 0; j < blocks[i].length; j++) {
-                if (blocks[i][j] != board.blocks[i][j]) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
 
     Iterable<Board> neighbors() {  // все соседние позиции
         // меняем ноль с соседней клеткой, то есть всего 4 варианта
@@ -118,5 +93,30 @@ public class Board {
             }
         }
         return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Board board = (Board) o;
+
+        if (board.dimension() != dimension()) {
+            return false;
+        }
+        for (int i = 0; i < blocks.length; i++) {
+            for (int j = 0; j < blocks[i].length; j++) {
+                if (blocks[i][j] != board.blocks[i][j]) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }

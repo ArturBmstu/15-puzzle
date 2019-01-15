@@ -34,7 +34,7 @@ class Solver {
         while (true) {
             Item board = priorityQueue.poll(); //  шаг 2
 
-            //   если дошли до решения, сохраняем весь путь ходов в лист
+            // если дошли до решения, сохраняем весь путь ходов в лист
             if (board.board.isGoal()) {
                 itemToList(new Item(board, board.board));
                 return;
@@ -95,7 +95,9 @@ class Solver {
     }
 
     int moves() {
-        if (!isSolvable()) return -1;
+        if (!isSolvable()) {
+            return -1;
+        }
         return result.size() - 1;
     }
 
